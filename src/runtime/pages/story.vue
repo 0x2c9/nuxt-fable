@@ -25,6 +25,24 @@ const route = useRoute()
 const storyEl = ref<HTMLDivElement>()
 const minWidth = ref(320)
 
+const openMenu = ref(false)
+const isMobile = ref(false)
+
+window.addEventListener('resize', onWindowResize)
+
+function onWindowResize() {
+	if (window.innerWidth < 1024) {
+		isMobile.value = true
+		return
+	}
+
+	isMobile.value = false
+}
+
+const showSidebar = computed(() => {
+	return !isMobile.value || openMenu.value
+})
+
 const computedComponent = computed(() => {
 	return selectedStory.value?.component
 })
@@ -32,17 +50,40 @@ const computedComponent = computed(() => {
 function setSelectedStory(story: IStory) {
 	selectedStory.value = story
 	router.push(`?component=${story.name}`)
+	if (isMobile.value) {
+		openMenu.value = false
+	}
 }
 
 function setSelectedVariant(storyVariant: IStoryVariant) {
 	router.push(`?component=${storyVariant.name}&variant=${storyVariant.variantName}`)
 	selectedStory.value = storyVariant
+	if (isMobile.value) {
+		openMenu.value = false
+	}
 }
 
 const openTree = ref(true)
 const showIntro = ref(false)
 const variantBackgroundColor = ref('#000000')
+
+const computedStoryElStyle = computed(() => {
+	if (isMobile.value) {
+		return {
+			gridTemplateColumns: `auto`,
+		}
+	}
+
+	return {
+		gridTemplateColumns: `${minWidth.value}px 1px auto`,
+	}
+})
+
 onMounted(() => {
+	if (window.innerWidth < 1024) {
+		isMobile.value = true
+	}
+
 	const savedVariantColor = localStorage.getItem('variant-background-color')
 	if (savedVariantColor) {
 		variantBackgroundColor.value = savedVariantColor
@@ -74,6 +115,7 @@ onMounted(() => {
 
 onUnmounted(() => {
 	document.documentElement.classList.remove('nuxt-fable')
+	window.removeEventListener('resize', onWindowResize)
 })
 
 const computedActiveFile = computed(() => {
@@ -113,80 +155,103 @@ function onColorChange($event: Event) {
 </script>
 
 <template>
-	<div
-		ref="storyEl"
-		class="nf-absolute nf-inset-0 nf-grid nf-grid-rows-[1fr] nf-overflow-hidden"
-		:style="{
-			gridTemplateColumns: `${minWidth}px 1px auto`,
-		}"
-	>
-		<aside
-			class="nf-h-full nf-border-r nf-border-neutral-800/80 nf-bg-neutral-900 nf-pt-12 nf-transition lg:nf-relative lg:nf-inset-y-auto lg:nf-left-auto nf-flex nf-flex-col"
-		>
-			<ul v-if="computedActiveFile">
-				<TreeItem
-					:active-file="computedActiveFile"
-					:item="storiesTree"
-					:open="openTree"
-					:level="0"
-					@select-story="setSelectedStory"
-					@select-variant="setSelectedVariant"
-				/>
-			</ul>
-		</aside>
+	<ClientOnly>
 		<div
-			class="group nf-relative nf-inset-y-0 nf-left-[-8px] nf-z-20 nf-w-4 nf-cursor-col-resize"
-			@mousedown="onMousedown"
+			ref="storyEl"
+			class="nf-absolute nf-inset-0 nf-grid nf-grid-rows-[1fr] nf-overflow-hidden"
+			:style="computedStoryElStyle"
 		>
-			<div class="mx-auto nf-h-full nf-w-[1px] nf-transition nf-duration-500 nf-ease-out group-hover:nf-bg-primary" />
-		</div>
-		<main class="nf-relative nf-flex nf-h-full nf-flex-col nf-overflow-y-auto nf-px-4 lg:nf-px-8">
 			<Transition
-				mode="out-in"
 				name="fade"
+				mode="out-in"
 			>
-				<div
-					v-if="selectedStory && computedComponent"
+				<aside
+					v-show="showSidebar"
+					class="nf-h-full nf-border-r nf-border-neutral-800/80 nf-bg-neutral-900 nf-pt-2 lg:nf-px-0 lg:nf-pt-12 nf-absolute nf-z-50 nf-inset-0 nf-transition lg:nf-relative lg:nf-inset-y-auto lg:nf-left-auto nf-flex nf-flex-col"
 				>
-					<header class="nf-py-2 nf-items-center nf-flex nf-justify-between nf-border-b nf-border-neutral-600 nf-absolute nf-top-0 nf-inset-x-0 nf-px-4 lg:nf-px-8">
-						<h1 class="nf-text-sm">
-							{{ selectedStory.name }}
-						</h1>
+					<button class="lg:nf-hidden nf-ml-4 nf-w-auto nf-self-start nf-mb-8">
+						<NfIcons
+							name="sidebar-open"
+							size="24"
+							@click="openMenu = !openMenu"
+						/>
+					</button>
 
-						<div>
-							<div class="nf-overflow-hidden nf-rounded-full nf-w-5 nf-h-5 nf-relative nf-border nf-border-neutral-500">
-								<input
-									v-model="variantBackgroundColor"
-									class="nf-bg-transparent nf-w-full nf-h-full nf-border-none nf-outline-none nf-absolute nf-top-0 nf-left-0 nf-cursor-pointer nf-transform nf-scale-[5]"
-									type="color"
-									@input="onColorChange"
-								>
-							</div>
-						</div>
-					</header>
-					<div class="nf-space-y-4 lg:nf-space-y-16 nf-pt-16">
-						<Component :is="computedComponent" />
-					</div>
-				</div>
-
-				<div
-					v-else
-					class="m-auto"
-				>
-					<ul>
-						<h1>No stories found.</h1>
-
-						<ul>
-							<li>
-								Create a <code>stories</code> folder in your root.
-							</li>
-							<li>
-								Create your first story component in <code>stories/MyComponent.stories.vue</code>
-							</li>
-						</ul>
+					<ul v-if="computedActiveFile">
+						<TreeItem
+							:active-file="computedActiveFile"
+							:item="storiesTree"
+							:open="openTree"
+							:level="0"
+							@select-story="setSelectedStory"
+							@select-variant="setSelectedVariant"
+						/>
 					</ul>
-				</div>
+				</aside>
 			</Transition>
-		</main>
-	</div>
+			<div
+				class="nf-hidden lg:nf-block group nf-relative nf-inset-y-0 nf-left-[-8px] nf-z-20 nf-w-4 nf-cursor-col-resize"
+				@mousedown="onMousedown"
+			>
+				<div class="mx-auto nf-h-full nf-w-[1px] nf-transition nf-duration-500 nf-ease-out group-hover:nf-bg-primary" />
+			</div>
+			<main class="nf-relative nf-flex nf-h-full nf-flex-col nf-overflow-y-auto nf-px-4 lg:nf-px-8">
+				<Transition
+					name="fade"
+					mode="out-in"
+				>
+					<div
+						v-if="selectedStory && computedComponent"
+					>
+						<header class="nf-py-2 nf-items-center nf-flex nf-justify-between nf-border-b nf-border-neutral-600 nf-absolute nf-top-0 nf-inset-x-0 nf-px-4 lg:nf-px-8">
+							<div class="nf-flex nf-items-center nf-gap-4">
+								<button class="lg:nf-hidden nf-self-start">
+									<NfIcons
+										name="sidebar-open"
+										size="24"
+										@click="openMenu = !openMenu"
+									/>
+								</button>
+								<h1 class="nf-text-sm">
+									{{ selectedStory.name }}
+								</h1>
+							</div>
+
+							<div>
+								<div class="nf-overflow-hidden nf-rounded-full nf-w-5 nf-h-5 nf-relative nf-border nf-border-neutral-500">
+									<input
+										v-model="variantBackgroundColor"
+										class="nf-bg-transparent nf-w-full nf-h-full nf-border-none nf-outline-none nf-absolute nf-top-0 nf-left-0 nf-cursor-pointer nf-transform nf-scale-[5]"
+										type="color"
+										@input="onColorChange"
+									>
+								</div>
+							</div>
+						</header>
+						<div class="nf-space-y-4 lg:nf-space-y-16 nf-pt-16">
+							<Component :is="computedComponent" />
+						</div>
+					</div>
+
+					<div
+						v-else
+						class="m-auto"
+					>
+						<ul>
+							<h1>No stories found.</h1>
+
+							<ul>
+								<li>
+									Create a <code>stories</code> folder in your root.
+								</li>
+								<li>
+									Create your first story component in <code>stories/MyComponent.stories.vue</code>
+								</li>
+							</ul>
+						</ul>
+					</div>
+				</Transition>
+			</main>
+		</div>
+	</ClientOnly>
 </template>

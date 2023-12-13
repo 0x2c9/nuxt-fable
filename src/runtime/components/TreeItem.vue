@@ -108,7 +108,7 @@ const computedComponentName = computed(() => {
 			<button
 				v-if="!isFolder && hasVariants"
 				class="nf-ml-auto nf-text-neutral-300"
-				@click="onCollapseClick"
+				@click.stop="onCollapseClick"
 			>
 				<NfIcons
 					name="chevron-toggle"

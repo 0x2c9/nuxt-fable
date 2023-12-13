@@ -56,7 +56,9 @@ function onZoom(direction: 'in' | 'out' | 'reset') {
 <template>
 	<div
 		v-if="computedShow"
-		class="nf-rounded nf-border nf-border-neutral-600"
+		:class="{
+			'nf-rounded nf-border nf-border-neutral-600': !pageMode,
+		}"
 	>
 		<header
 			v-if="title"
@@ -104,13 +106,13 @@ function onZoom(direction: 'in' | 'out' | 'reset') {
 			:style="{
 				maxHeight: computedMaxHeight,
 				overflow: zoomLevel === 1 ? 'hidden' : 'scroll',
-				backgroundColor: 'var(--variant-background-color)',
+				backgroundColor: !pageMode ? 'var(--variant-background-color)' : 'transparent',
 			}"
 		>
 			<div
 				ref="variantStage"
 				:class="{
-					'zoom nf-flex nf-flex-wrap nf-gap-20 nf-p-8 nf-items-end': !pageMode,
+					'zoom nf-flex nf-flex-col nf-items-start lg:nf-flex-row lg:nf-flex-wrap nf-gap-20 nf-p-8 lg:nf-items-end': !pageMode,
 				}"
 				:style="{
 					zoom: zoomLevel,

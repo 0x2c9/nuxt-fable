@@ -10,5 +10,6 @@ export function useNfIcons() {
 		'zoom-in': 'carbon:zoom-in-area',
 		'zoom-out': 'carbon:zoom-out-area',
 		'zoom-reset': 'carbon:zoom-reset',
+		'sidebar-open': 'carbon:menu',
 	}
 }
