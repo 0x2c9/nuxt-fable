@@ -28,7 +28,9 @@ const minWidth = ref(320)
 const openMenu = ref(false)
 const isMobile = ref(false)
 
-window.addEventListener('resize', onWindowResize)
+if (process.client) {
+	window.addEventListener('resize', onWindowResize)
+}
 
 function onWindowResize() {
 	if (window.innerWidth < 1024) {

@@ -20,7 +20,6 @@ export default defineNuxtConfig({
 	fable: {
 		devOnly: false,
 	},
-	ssr: false,
 	imports: {
 		autoImport: true,
 	},

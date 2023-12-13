@@ -48,20 +48,20 @@
   z-index: 50;
 }
 
-.nf-ml-2 {
-  margin-left: 0.5rem;
-}
-
-.nf-ml-auto {
-  margin-left: auto;
-}
-
 .nf-mb-8 {
   margin-bottom: 2rem;
 }
 
+.nf-ml-2 {
+  margin-left: 0.5rem;
+}
+
 .nf-ml-4 {
   margin-left: 1rem;
+}
+
+.nf-ml-auto {
+  margin-left: auto;
 }
 
 .nf-flex {
@@ -96,12 +96,12 @@
   width: 1px;
 }
 
-.nf-w-full {
-  width: 100%;
-}
-
 .nf-w-auto {
   width: auto;
+}
+
+.nf-w-full {
+  width: 100%;
 }
 
 .nf-scale-\[5\] {
@@ -136,10 +136,6 @@
   flex-direction: column;
 }
 
-.nf-flex-wrap {
-  flex-wrap: wrap;
-}
-
 .nf-items-start {
   align-items: flex-start;
 }
@@ -162,10 +158,6 @@
 
 .nf-gap-4 {
   gap: 1rem;
-}
-
-.nf-gap-8 {
-  gap: 2rem;
 }
 
 .nf-space-y-4 > :not([hidden]) ~ :not([hidden]) {
@@ -267,11 +259,6 @@
   padding-bottom: 0.5rem;
 }
 
-.nf-px-2 {
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-}
-
 .nf-pl-0 {
   padding-left: 0px;
 }
@@ -300,16 +287,8 @@
   padding-right: 1rem;
 }
 
-.nf-pt-12 {
-  padding-top: 3rem;
-}
-
 .nf-pt-16 {
   padding-top: 4rem;
-}
-
-.nf-pt-6 {
-  padding-top: 1.5rem;
 }
 
 .nf-pt-2 {
@@ -436,14 +415,14 @@
     margin-bottom: calc(4rem * var(--tw-space-y-reverse));
   }
 
-  .lg\:nf-px-8 {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-
   .lg\:nf-px-0 {
     padding-left: 0px;
     padding-right: 0px;
+  }
+
+  .lg\:nf-px-8 {
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 
   .lg\:nf-pt-12 {
