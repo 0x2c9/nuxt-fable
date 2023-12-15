@@ -1,4 +1,16 @@
 
+## v1.0.5
+
+[compare changes](https://github.com/0x2c9/nuxt-fable/compare/v1.0.4...v1.0.5)
+
+### 🩹 Fixes
+
+- Clean up things, make it client only, fix things after comparing to fresh new module init ([8ec7efa](https://github.com/0x2c9/nuxt-fable/commit/8ec7efa))
+
+### ❤️ Contributors
+
+- 0x2c9 <grmnn@proton.me>
+
 ## v1.0.4
 
 [compare changes](https://github.com/0x2c9/nuxt-fable/compare/v1.0.3...v1.0.4)
