@@ -22,6 +22,8 @@ export default defineNuxtModule<ModuleOptions>({
 	async setup(options, nuxt) {
 		if (options.devOnly && !nuxt.options.dev)
 			return
+
+		nuxt.options.ssr = false
 		const resolver = createResolver(import.meta.url)
 
 		nuxt.options.css.push(resolver.resolve('./runtime/styles.css'))

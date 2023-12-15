@@ -40,12 +40,13 @@
   top: 0px;
 }
 
-.nf-z-20 {
-  z-index: 20;
-}
-
 .nf-z-50 {
   z-index: 50;
+}
+
+.nf-mx-auto {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .nf-mb-8 {
