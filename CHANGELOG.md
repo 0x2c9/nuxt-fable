@@ -1,4 +1,8 @@
 
+## v1.0.7
+
+[compare changes](https://github.com/0x2c9/nuxt-fable/compare/v1.0.6...v1.0.7)
+
 ## v1.0.6
 
 [compare changes](https://github.com/0x2c9/nuxt-fable/compare/v1.0.5...v1.0.6)
