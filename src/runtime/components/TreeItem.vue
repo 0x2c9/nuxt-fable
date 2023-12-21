@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { IStory, IStoryVariant } from '../../types'
 
+import NfIcons from './NfIcons.vue'
 import { computed, ref, useRoute } from '#imports'
 
 const props = defineProps<{
@@ -90,19 +91,19 @@ const computedComponentName = computed(() => {
 		>
 			<NfIcons
 				v-if="isFolder && folderIsOpen"
-				name="folder-open"
+				name="ph-folder-notch-open-duotone"
 				size="24"
 			/>
 
 			<NfIcons
 				v-else-if="isFolder && !folderIsOpen"
-				name="folder-closed"
+				name="ph-folder-notch-duotone"
 				size="24"
 			/>
 
 			<NfIcons
 				v-else
-				name="story"
+				name="uim-layer-group"
 			/>
 			<span class="nf-ml-2"> {{ item.name }}</span>
 			<button
@@ -111,7 +112,7 @@ const computedComponentName = computed(() => {
 				@click.stop="onCollapseClick"
 			>
 				<NfIcons
-					name="chevron-toggle"
+					name="heroicons-chevron-up-down-20-solid"
 					size="16"
 				/>
 			</button>
@@ -127,17 +128,9 @@ const computedComponentName = computed(() => {
 				@click="onSelectVariant(variant)"
 			>
 				<NfIcons
-					name="variant"
+					name="radix-icons-component-placeholder"
 				/>
 				<span class="nf-ml-2 nf-text-sm"> {{ variant.variantName }}</span>
-				<!-- <button
-          class="nf-absolute nf-right-4 group-hover:nf-visible nf-invisible"
-          @click.stop="onSelectVariant(variant)"
-        >
-          <NfIcons
-            :name="variant.variantName === route.query?.variant ? 'eye-closed' : 'eye-open'"
-          />
-        </button> -->
 			</li>
 		</ul>
 		<ul

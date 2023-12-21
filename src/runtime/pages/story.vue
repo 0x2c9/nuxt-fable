@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { IStory, IStoryVariant } from '../../types'
 
+import SvgSprite from '../components/SvgSprite.vue'
+import NfIcons from '../components/NfIcons.vue'
 import {
 	computed,
 	definePageMeta,
@@ -170,7 +172,7 @@ function onColorChange($event: Event) {
 			>
 				<button class="lg:nf-hidden nf-ml-4 nf-w-auto nf-self-start nf-mb-8">
 					<NfIcons
-						name="sidebar-open"
+						name="carbon-menu"
 						size="24"
 						@click="openMenu = !openMenu"
 					/>
@@ -195,6 +197,7 @@ function onColorChange($event: Event) {
 			<div class="nf-mx-auto nf-h-full nf-w-[1px] nf-transition nf-duration-500 nf-ease-out group-hover:nf-bg-primary" />
 		</div>
 		<main class="nf-relative nf-flex nf-h-full nf-flex-col nf-overflow-y-auto nf-px-4 lg:nf-px-8">
+			<SvgSprite class="nf-hidden" />
 			<Transition
 				name="fade"
 				mode="out-in"
@@ -206,7 +209,7 @@ function onColorChange($event: Event) {
 						<div class="nf-flex nf-items-center nf-gap-4">
 							<button class="lg:nf-hidden nf-self-start">
 								<NfIcons
-									name="sidebar-open"
+									name="carbon-menu"
 									size="24"
 									@click="openMenu = !openMenu"
 								/>

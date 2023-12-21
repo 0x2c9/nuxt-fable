@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import NfIcons from './NfIcons.vue'
 import { computed, ref, useRoute } from '#imports'
 
 interface IVariant {
@@ -77,7 +78,7 @@ function onZoom(direction: 'in' | 'out' | 'reset') {
 					@click="onZoom('out')"
 				>
 					<NfIcons
-						name="zoom-out"
+						name="carbon-zoom-in-area"
 						size="16"
 					/>
 				</button>
@@ -86,7 +87,7 @@ function onZoom(direction: 'in' | 'out' | 'reset') {
 					@click="onZoom('reset')"
 				>
 					<NfIcons
-						name="zoom-reset"
+						name="carbon-zoom-reset"
 						size="16"
 					/>
 				</button>
@@ -95,7 +96,7 @@ function onZoom(direction: 'in' | 'out' | 'reset') {
 					@click="onZoom('in')"
 				>
 					<NfIcons
-						name="zoom-in"
+						name="carbon-zoom-in-area"
 						size="16"
 					/>
 				</button>

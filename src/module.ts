@@ -28,13 +28,10 @@ export default defineNuxtModule<ModuleOptions>({
 
 		nuxt.options.css.push(resolver.resolve('./runtime/styles.css'))
 
-		const componentsDir = fileURLToPath(new URL('./runtime/components', import.meta.url))
-
 		await addComponentsDir({
-			path: resolver.resolve(componentsDir),
+			path: resolver.resolve('runtime/components'),
 			pathPrefix: false,
 			pattern: '**/*.vue',
-			transpile: true,
 		})
 
 		const layoutsDir = fileURLToPath(new URL('./runtime/layouts', import.meta.url))

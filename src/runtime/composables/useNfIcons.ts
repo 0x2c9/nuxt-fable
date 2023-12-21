@@ -1,15 +1,13 @@
-export function useNfIcons() {
-	return {
-		'eye-open': 'ph:eye',
-		'eye-closed': 'ph:eye-closed',
-		'chevron-toggle': 'heroicons:chevron-up-down-20-solid',
-		'folder-open': 'ph:folder-notch-open-duotone',
-		'folder-closed': 'ph:folder-notch-duotone',
-		'story': 'uim:layer-group',
-		'variant': 'radix-icons:component-placeholder',
-		'zoom-in': 'carbon:zoom-in-area',
-		'zoom-out': 'carbon:zoom-out-area',
-		'zoom-reset': 'carbon:zoom-reset',
-		'sidebar-open': 'carbon:menu',
-	}
-}
+export const ICONS = {
+	'carbon-menu': 'carbon-menu',
+	'carbon-zoom-in-area': 'carbon-zoom-in-area',
+	'carbon-zoom-out-area': 'carbon-zoom-out-area',
+	'carbon-zoom-reset': 'carbon-zoom-reset',
+	'heroicons-chevron-up-down-20-solid': 'heroicons-chevron-up-down-20-solid',
+	'ph-eye': 'ph-eye',
+	'ph-eye-closed': 'ph-eye-closed',
+	'ph-folder-notch-duotone': 'ph-folder-notch-duotone',
+	'ph-folder-notch-open-duotone': 'ph-folder-notch-open-duotone',
+	'radix-icons-component-placeholder': 'radix-icons-component-placeholder',
+	'uim-layer-group': 'uim-layer-group',
+} as const
