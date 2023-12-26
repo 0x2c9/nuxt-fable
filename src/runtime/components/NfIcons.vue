@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { ICONS } from '../composables/useNfIcons'
+import type { NUXT_FABLE_ICONS } from '../composables/useNfIcons'
 import { computed } from '#imports'
 
 const { size = '20', name = '' } = defineProps<IBaseIcon>()
 
 interface IBaseIcon {
-	name: keyof typeof ICONS
+	name: keyof typeof NUXT_FABLE_ICONS
 	size?: string
 }
 

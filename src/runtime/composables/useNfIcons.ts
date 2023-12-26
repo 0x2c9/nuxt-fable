@@ -1,4 +1,4 @@
-export const ICONS = {
+export const NUXT_FABLE_ICONS = {
 	'carbon-menu': 'carbon-menu',
 	'carbon-zoom-in-area': 'carbon-zoom-in-area',
 	'carbon-zoom-out-area': 'carbon-zoom-out-area',
