@@ -6,6 +6,7 @@ import NfIcons from '../components/NfIcons.vue'
 import TreeItem from '../components/TreeItem.vue'
 import {
 	computed,
+	definePageMeta,
 	onMounted,
 	onUnmounted,
 	ref,
@@ -14,7 +15,6 @@ import {
 	useRouter,
 } from '#imports'
 
-// @ts-expect-error - idk how to fix this
 definePageMeta({
 	layout: 'story-layout',
 })
