@@ -4,6 +4,9 @@ export default defineNuxtConfig({
 	css: [
 		'~/assets/styles.css',
 	],
+	devServer: {
+		port: 3001,
+	},
 	experimental: {
 		payloadExtraction: false,
 	},

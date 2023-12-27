@@ -76,6 +76,12 @@ function onSelectVariant(variant: IStoryVariant) {
 const computedComponentName = computed(() => {
 	return route.query?.component as string
 })
+
+const validItemVariants = computed(() => {
+	return props.item.variants?.filter((variant: IStoryVariant) => {
+		return !!variant.variantName
+	})
+})
 </script>
 
 <template>
@@ -121,7 +127,7 @@ const computedComponentName = computed(() => {
 			v-if="item.variants && item.variants.length && variantsIsOpen"
 		>
 			<li
-				v-for="variant of item.variants"
+				v-for="variant of validItemVariants"
 				:key="variant.variantName"
 				class="nf-flex nf-items-center nf-relative nf-py-1.5 hover:nf-text-white nf-cursor-pointer nf-select-none nf-group nf-pr-4"
 				:class="[computedVariantItemClass, activeClass(variant)]"
