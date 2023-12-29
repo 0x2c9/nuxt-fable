@@ -69,9 +69,14 @@ To see your stories run your dev server and go to `/story`.
 Per default the module won't be included in your build. If you want to deploy the stories too you can set `devOnly: false` in the module options.
 
 ```js
-fable: {
-	devOnly: false,
-},
+export default defineNuxtConfig({
+	modules: [
+		'nuxt-fable'
+	],
+	fable: {
+		devOnly: false,
+	}
+})
 ```
 
 That's it! You can now use Nuxt Fable in your Nuxt app ✨
