@@ -58,7 +58,7 @@ function onZoom(direction: 'in' | 'out' | 'reset') {
 	<div
 		v-if="computedShow"
 		:class="{
-			'nf-rounded nf-border nf-border-neutral-600': !pageMode,
+			'nf-rounded nf-border nf-border-neutral-600 nf-overflow-hidden': !pageMode,
 		}"
 	>
 		<header
@@ -113,7 +113,7 @@ function onZoom(direction: 'in' | 'out' | 'reset') {
 			<div
 				ref="variantStage"
 				:class="{
-					'zoom nf-flex nf-flex-col nf-items-start lg:nf-flex-row lg:nf-flex-wrap nf-gap-20 nf-p-8 lg:nf-items-end': !pageMode,
+					'zoom nf-flex nf-flex-col nf-items-start lg:nf-flex-row lg:nf-flex-wrap  nf-gap-4 lg:nf-gap-20 nf-p-2 lg:nf-p-8 lg:nf-items-end': !pageMode,
 				}"
 				:style="{
 					zoom: zoomLevel,

@@ -172,24 +172,26 @@ function onColorChange($event: Event) {
 				v-show="showSidebar"
 				class="nf-h-full nf-border-r nf-border-neutral-800/80 nf-bg-neutral-900 nf-pt-2 lg:nf-px-0 lg:nf-pt-12 nf-absolute nf-z-50 nf-inset-0 nf-transition lg:nf-relative lg:nf-inset-y-auto lg:nf-left-auto nf-flex nf-flex-col"
 			>
-				<button class="lg:nf-hidden nf-ml-4 nf-w-auto nf-self-start nf-mb-8">
-					<NfIcons
-						name="carbon-menu"
-						size="24"
-						@click="openMenu = !openMenu"
-					/>
-				</button>
+				<ClientOnly>
+					<button class="lg:nf-hidden nf-ml-4 nf-w-auto nf-self-start nf-mb-8">
+						<NfIcons
+							name="carbon-menu"
+							size="24"
+							@click="openMenu = !openMenu"
+						/>
+					</button>
 
-				<ul v-if="computedActiveFile">
-					<TreeItem
-						:active-file="computedActiveFile"
-						:item="storiesTree"
-						:open="openTree"
-						:level="0"
-						@select-story="setSelectedStory"
-						@select-variant="setSelectedVariant"
-					/>
-				</ul>
+					<ul v-if="computedActiveFile">
+						<TreeItem
+							:active-file="computedActiveFile"
+							:item="storiesTree"
+							:open="openTree"
+							:level="0"
+							@select-story="setSelectedStory"
+							@select-variant="setSelectedVariant"
+						/>
+					</ul>
+				</ClientOnly>
 			</aside>
 		</Transition>
 		<div
@@ -198,7 +200,7 @@ function onColorChange($event: Event) {
 		>
 			<div class="nf-mx-auto nf-h-full nf-w-[1px] nf-transition nf-duration-500 nf-ease-out group-hover:nf-bg-primary" />
 		</div>
-		<main class="nf-relative nf-flex nf-h-full nf-flex-col nf-overflow-y-auto nf-px-4 lg:nf-px-8">
+		<main class="nf-relative nf-flex nf-h-full nf-flex-col nf-overflow-y-auto nf-px-2 lg:nf-px-8 nf-pb-2">
 			<SvgSprite class="nf-hidden" />
 			<Transition
 				name="fade"
