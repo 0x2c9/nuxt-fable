@@ -4,8 +4,10 @@ import { useStories } from '../composables/useStories'
 import SvgSprite from '../components/SvgSprite.vue'
 import NfIcons from '../components/NfIcons.vue'
 import TreeItem from '../components/TreeItem.vue'
+
 import {
 	computed,
+	// @ts-expect-error definePageMeta is not exported from #imports but without it the page doesn't work?!
 	definePageMeta,
 	onMounted,
 	onUnmounted,
