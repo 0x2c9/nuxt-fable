@@ -1,4 +1,7 @@
 <script setup lang="ts">
+// No docs, no issues, nothing about how to use a layout inside a module
+// eslint-disable-next-line antfu/no-import-dist, antfu/no-import-node-modules-by-path
+import { definePageMeta } from '../../../node_modules/nuxt/dist/pages/runtime/composables'
 import type { IStory, IStoryVariant } from '../../types'
 import FableTreeItem from '../components/FableTreeItem.vue'
 
@@ -13,7 +16,6 @@ import {
 	useRouter,
 } from '#imports'
 
-// @ts-expect-error idk why this is not working
 definePageMeta({
 	layout: 'story-layout',
 })
