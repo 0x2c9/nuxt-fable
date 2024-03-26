@@ -1,0 +1,52 @@
+{
+	"name": "nuxt-fable",
+	"type": "module",
+	"version": "0.0.1",
+	"description": "Simple and minimalistic storybook replacement for Nuxt.",
+	"license": "MIT",
+	"repository": "https://github.com/0x2c9/nuxt-fable",
+	"exports": {
+		".": {
+			"types": "./dist/types.d.ts",
+			"import": "./dist/module.mjs",
+			"require": "./dist/module.cjs"
+		}
+	},
+	"main": "./dist/module.cjs",
+	"types": "./dist/types.d.ts",
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"lint": "eslint .",
+		"lint:fix": "eslint . --fix",
+		"typecheck": "nuxt typecheck",
+		"prepack": "pnpm tailwind:stories && nuxt-module-build build",
+		"prerelease": "pnpm run lint && pnpm run prepack && changelogen --release --no-commit",
+		"release": "pnpm publish && git push --follow-tags",
+		"tailwind:playground": "tailwindcss -i ./playground/assets/tailwind.css -o ./playground/assets/styles.css -c ./playground/tailwind.config.ts",
+		"tailwind:stories": "tailwindcss -i ./src/tailwind.css -o ./src/runtime/styles.css -c ./tailwind.config.ts",
+		"dev:serve": "nuxi preview playground",
+		"dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
+		"dev:generate": "nuxi generate playground",
+		"dev:playground": "nuxi dev playground",
+		"dev": "pnpm dev:prepare && concurrently --kill-others \"pnpm run tailwind:stories --watch\" \"pnpm run tailwind:playground --watch\" \"nuxi dev playground\""
+	},
+	"dependencies": {
+		"@nuxt/kit": "^3.11.1"
+	},
+	"devDependencies": {
+		"@antfu/eslint-config": "^2.10.1",
+		"@nuxt/module-builder": "^0.5.5",
+		"@nuxt/schema": "^3.11.1",
+		"@nuxt/test-utils": "^3.12.0",
+		"@types/node": "^20.11.30",
+		"changelogen": "^0.5.5",
+		"concurrently": "^8.2.2",
+		"eslint": "^8.57.0",
+		"nuxt": "^3.11.1",
+		"tailwindcss": "^3.4.1",
+		"typescript": "5.4.3",
+		"vue-tsc": "^2.0.7"
+	}
+}
