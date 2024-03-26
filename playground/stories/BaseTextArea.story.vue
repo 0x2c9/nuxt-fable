@@ -1,5 +1,5 @@
 <template>
-	<Variant :page-mode="true">
+	<FableVariant :page-mode="true">
 		<BaseTextArea />
-	</Variant>
+	</FableVariant>
 </template>

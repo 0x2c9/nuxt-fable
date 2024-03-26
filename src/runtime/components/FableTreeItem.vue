@@ -197,7 +197,7 @@ const validItemVariants = computed(() => {
 			v-show="folderIsOpen"
 			v-if="isFolder"
 		>
-			<TreeItem
+			<FableTreeItem
 				v-for="(child, index) in item.children"
 				:key="index"
 				:level="level + 1"

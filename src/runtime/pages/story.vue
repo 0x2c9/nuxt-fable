@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { IStory, IStoryVariant } from '../../types'
-import TreeItem from '../components/TreeItem.vue'
+import FableTreeItem from '../components/FableTreeItem.vue'
 
 import {
 	computed,
@@ -185,7 +185,7 @@ function onColorChange($event: Event) {
 					</button>
 
 					<ul v-if="computedActiveFile">
-						<TreeItem
+						<FableTreeItem
 							:active-file="computedActiveFile"
 							:item="$storiesTree"
 							:open="openTree"

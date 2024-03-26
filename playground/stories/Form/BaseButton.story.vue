@@ -1,5 +1,5 @@
 <template>
-	<Variant
+	<FableVariant
 		title="Default"
 	>
 		<BaseButton variant="primary">
@@ -12,9 +12,9 @@
 		>
 			Secondary
 		</BaseButton>
-	</Variant>
+	</FableVariant>
 
-	<Variant
+	<FableVariant
 		title="Sizes"
 	>
 		<BaseButton>Default Button</BaseButton>
@@ -32,9 +32,9 @@
 		>
 			Small Button
 		</BaseButton>
-	</Variant>
+	</FableVariant>
 
-	<Variant
+	<FableVariant
 		title="Prefix and Suffix"
 	>
 		<BaseButton icon="upload">
@@ -70,18 +70,18 @@
 		>
 			Pre & Suffix Icon
 		</BaseButton>
-	</Variant>
+	</FableVariant>
 
-	<Variant
+	<FableVariant
 		title="Types"
 	>
 		<BaseButton>Primary Button</BaseButton>
 		<BaseButton variant="secondary">
 			Secondary Button
 		</BaseButton>
-	</Variant>
+	</FableVariant>
 
-	<Variant
+	<FableVariant
 		title="Disabled"
 	>
 		<BaseButton
@@ -106,5 +106,5 @@
 		>
 			Confirm
 		</BaseButton>
-	</Variant>
+	</FableVariant>
 </template>
