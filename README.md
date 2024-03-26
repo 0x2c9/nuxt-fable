@@ -1,8 +1,6 @@
 # Nuxt Fable
 
 [![npm version][npm-version-src]][npm-version-href]
-[![npm downloads][npm-downloads-src]][npm-downloads-href]
-[![License][license-src]][license-href]
 [![Nuxt][nuxt-src]][nuxt-href]
 
 Nuxt module to view and work on components in isolation with Vue SFCs.
@@ -12,7 +10,7 @@ Nuxt module to view and work on components in isolation with Vue SFCs.
 
 ## Quick Setup
 
-1. Add `nuxt-fable` dependency to your project
+1. Add `nuxt-fable` as a dev dependency to your project
 
 ```bash
 # Using pnpm
@@ -35,31 +33,31 @@ export default defineNuxtConfig({
 })
 ```
 
-3. Create a `stories` folder in the root of your project and add SFCs with `.story.vue` like `Button.story.vue`. Define story variants with the provided `<Variant>` component.
+3. Create a `stories` folder in the root of your project and add SFCs with `.story.vue` like `Button.story.vue`. Define story variants with the provided `<FableVariant>` component.
 
 ```html
 <template>
-	<Variant title="Button Variants">
+	<FableVariant title="Button Variants">
 		<MyButton primary>Hello World</MyButton>
 		<MyButton secondary>Hello World</MyButton>
-	</Variant>
-	<Variant title="Button Sizes">
+	</FableVariant>
+	<FableVariant title="Button Sizes">
 		<MyButton primary size="sm">Small Button</MyButton>
 		<MyButton primary size="default">Default Button</MyButton>
 		<MyButton primary size="large">Large Button</MyButton>
-	</Variant>
+	</FableVariant>
 </template>
 ```
 
-If you want to use the whole page for a story use the `page-mode` prop for the  `<Variant>` component.
+If you want to use the whole page for a story use the `page-mode` prop for the  `<FableVariant>` component.
 
 ```html
 <template>
-	<Variant title="Authentication Form" :page-mode="true">
+	<FableVariant title="Authentication Form" :page-mode="true">
 		<form>
 			<!-- .... -->
 		</form>
-	</Variant>
+	</FableVariant>
 </template>
 ```
 
@@ -104,12 +102,6 @@ pnpm run release
 <!-- Badges -->
 [npm-version-src]: https://img.shields.io/npm/v/nuxt-fable/latest.svg?style=flat&colorA=18181B&colorB=28CF8D
 [npm-version-href]: https://npmjs.com/package/nuxt-fable
-
-[npm-downloads-src]: https://img.shields.io/npm/dm/nuxt-fable.svg?style=flat&colorA=18181B&colorB=28CF8D
-[npm-downloads-href]: https://npmjs.com/package/nuxt-fable
-
-[license-src]: https://img.shields.io/npm/l/nuxt-fable.svg?style=flat&colorA=18181B&colorB=28CF8D
-[license-href]: https://npmjs.com/package/nuxt-fable
 
 [nuxt-src]: https://img.shields.io/badge/Nuxt-18181B?logo=nuxt.js
 [nuxt-href]: https://nuxt.com
