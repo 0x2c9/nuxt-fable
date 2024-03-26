@@ -28,4 +28,9 @@ export default defineNuxtConfig({
 	typescript: {
 		strict: true,
 	},
+	nitro: {
+		prerender: {
+			autoSubfolderIndex: false,
+		},
+	},
 })
