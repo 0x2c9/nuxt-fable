@@ -1,5 +1,4 @@
-import { fileURLToPath } from 'node:url'
-import { addComponentsDir, addImportsDir, addLayout, addPlugin, createResolver, defineNuxtModule, extendPages } from '@nuxt/kit'
+import { addComponent, addLayout, addPlugin, createResolver, defineNuxtModule, extendPages } from '@nuxt/kit'
 
 export interface ModuleOptions {
 	/**
@@ -23,39 +22,32 @@ export default defineNuxtModule<ModuleOptions>({
 		if (options.devOnly && !nuxt.options.dev)
 			return
 
-		const resolver = createResolver(import.meta.url)
+		const { resolve } = createResolver(import.meta.url)
 
-		addPlugin(resolver.resolve('./runtime/plugin'))
+		addPlugin(resolve('runtime/plugin'))
 
-		nuxt.options.css.push(resolver.resolve('./runtime/styles.css'))
+		nuxt.options.css.push(resolve('runtime/styles.css'))
 
-		await addComponentsDir({
-			path: resolver.resolve('runtime/components'),
-			pathPrefix: false,
-			pattern: '**/*.vue',
+		addComponent({
+			name: 'FableVariant',
+			filePath: resolve('runtime/components', 'FableVariant.vue'),
 		})
-
-		const layoutsDir = fileURLToPath(new URL('./runtime/layouts', import.meta.url))
 
 		addLayout(
 			{
-				src: resolver.resolve(layoutsDir, 'story-layout.vue'),
+				src: resolve('runtime/layouts', 'story-layout.vue'),
 				write: true,
 				filename: 'story-layout.vue',
 			},
 			'story-layout',
 		)
 
-		const pagesDir = fileURLToPath(new URL('./runtime/pages', import.meta.url))
 		extendPages((pages) => {
 			pages.push({
 				name: 'Story',
 				path: '/story',
-				file: resolver.resolve(pagesDir, 'story.vue'),
+				file: resolve('runtime/pages', 'story.vue'),
 			})
 		})
-
-		const composablesDir = fileURLToPath(new URL('./runtime/composables', import.meta.url))
-		addImportsDir(resolver.resolve(composablesDir))
 	},
 })
