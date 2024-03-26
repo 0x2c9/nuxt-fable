@@ -26,10 +26,8 @@
 		"release": "pnpm publish && git push --follow-tags",
 		"tailwind:playground": "tailwindcss -i ./playground/assets/tailwind.css -o ./playground/assets/styles.css -c ./playground/tailwind.config.ts",
 		"tailwind:stories": "tailwindcss -i ./src/tailwind.css -o ./src/runtime/styles.css -c ./tailwind.config.ts",
-		"dev:serve": "nuxi preview playground",
 		"dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
-		"dev:generate": "nuxi generate playground",
-		"dev:playground": "nuxi dev playground",
+		"dev:generate": "pnpm dev:prepare && nuxi generate playground",
 		"dev": "pnpm dev:prepare && concurrently --kill-others \"pnpm run tailwind:stories --watch\" \"pnpm run tailwind:playground --watch\" \"nuxi dev playground\""
 	},
 	"dependencies": {
