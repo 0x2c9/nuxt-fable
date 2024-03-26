@@ -5,8 +5,6 @@ import type { IStory, ITreeItem } from '@/src/types'
 export default defineNuxtPlugin(async (_nuxtApp) => {
 	const storyModules = import.meta.glob('/stories/**/*.story.vue')
 
-	console.log('storyModules', storyModules)
-
 	const storiesTree = {} as ITreeItem
 	const stories = [] as IStory[]
 	try {
